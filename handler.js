@@ -25,11 +25,17 @@ module.exports.getPrice = async (event) => {
   var client = WetterheldClient(options);
 
   const querystring = event.queryStringParameters;
+  if(!(querystring)){
+    return sendResponse(422, "No data given");
+  }
   if(!(querystring.dates) || !(querystring.hours)){
     return sendResponse(422, "No dates or hours given");
   }
-  const dates = querystring.dates;
-  const hours = querystring.hours;
+  const dates = JSON.parse(querystring.dates);
+  const hours = JSON.parse(querystring.hours);
+  if(!(Array.isArray(dates)) || !(Array.isArray(hours))){
+    return sendResponse(422, "No or invalid dates or hours given");
+  }
   if(!(querystring.lat) || !(querystring.lng)){
     return sendResponse(422, "No lat/lng given");
   }
