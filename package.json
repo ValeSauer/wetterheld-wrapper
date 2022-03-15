@@ -4,7 +4,7 @@
   "description": "Wrapper for the Wetterheld API to expose a simplified API",
   "main": "handler.js",
   "scripts": {
-    "test": "test"
+    "test": "jeust"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/ValeSauer/wetterheld-wrapper/issues"
   },
-  "homepage": "https://github.com/ValeSauer/wetterheld-wrapper#readme"
+  "homepage": "https://github.com/ValeSauer/wetterheld-wrapper#readme",
+  "jest": {
+    "verbose": true
+  },
+  "devDependencies": {
+    "jest": "^27.5.1",
+    "serverless-offline": "^8.5.0"
+  }
 }
