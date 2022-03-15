@@ -1,14 +1,21 @@
 service: wetterheld-wrapper
-frameworkVersion: '3'
+frameworkVersion: "3"
+
+plugins:
+  - serverless-offline
 
 provider:
   name: aws
   runtime: nodejs14.x
+  timeout: 30
+  region: eu-central-1
+  apiGateway:
+    shouldStartNameWithService: true
 
 functions:
-  hello:
-    handler: handler.hello
+  getPrice:
+    handler: handler.price
     events:
       - httpApi:
-          path: /
+          path: /price
           method: get
