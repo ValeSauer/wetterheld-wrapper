@@ -14,8 +14,8 @@ provider:
 
 functions:
   getPrice:
-    handler: handler.price
+    handler: handler.getPrice
     events:
       - httpApi:
-          path: /price
+          path: /getPrice
           method: get
