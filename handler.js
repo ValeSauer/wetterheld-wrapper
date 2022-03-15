@@ -54,13 +54,18 @@ module.exports.getPrice = async (event) => {
     await client.all.getWeatherSources();
     await client.all.determineStation();
     await client.all.findStation(lat, lng, city, zip, street, house);
-    var finalResponse = await client.all.orderPrice();
+    const priceResponse = await client.all.orderPrice();
+    if(priceResponse && priceResponse.insurers && priceResponse.insurers[0] && priceResponse.insurers[0].price){
+      return sendResponse(200, {price: priceResponse.insurers[0].price});
+    }else{
+      return sendResponse(500, "Invalid price response form Wetterheld");
+    }
 
   }catch(e){
     return sendResponse(500, "Wetterheld API Error: " + e.errorMessage)
   }
 
-  return sendResponse(200, finalResponse);
+
 
   function sendResponse(responseCode = 500, responseBody = "Undefined error"){
     return {
