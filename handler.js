@@ -70,10 +70,11 @@ module.exports.getPrice = async (event) => {
       priceResponse &&
       priceResponse.price.insurers &&
       priceResponse.price.insurers[0] &&
-      priceResponse.price.insurers[0].price
+      priceResponse.price.insurers[0].price &&
+      priceResponse.price.insurers[0].price[0]
     ) {
       return sendResponse(200, 
-        { price: priceResponse.price.insurers[0].price,
+        { price: priceResponse.price.insurers[0].price[0],
           threshold: priceResponse.threshold,
           station
         });

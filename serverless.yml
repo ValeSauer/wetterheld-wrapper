@@ -1,3 +1,5 @@
+org: valesauer
+app: wetterheld-wrapper
 service: wetterheld-wrapper
 frameworkVersion: "3"
 
